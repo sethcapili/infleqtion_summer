@@ -12,4 +12,5 @@ A 6-week project exploring whether LLMs can generate and verify simple quantum c
 - Python
 - Cirq
 - NumPy
-- OpenAI API
+- PyTorch
+- an LLM 
