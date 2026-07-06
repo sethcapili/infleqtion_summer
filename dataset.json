@@ -1,0 +1,407 @@
+{
+  "database_name": "Quantum Circuit Tracker",
+  "record_count": 26,
+  "schema": {
+    "Circuit": "object",
+    "Description of Utility": "object",
+    "Difficulty": "object",
+    "Expected Gates": "object",
+    "Status": "object"
+  },
+  "records":[
+    {
+      "Circuit": "Two-Layer Variational Circuit",
+      "Description of Utility": "Parameterized ansatz with two layers of rotations and entanglers on three qubits. Used in VQE and quantum ML.",
+      "Difficulty": "Advanced",
+      "Expected Gates": "RY, CNOT, RY, CNOT",
+      "Status": "Haven't Touched"
+    },
+    {
+      "Circuit": "Phase Kickback",
+      "Description of Utility": "Demonstrates how phase from a target qubit transfers back to a control qubit. Core subroutine in Shor's and Grover's algorithms.",
+      "Difficulty": "Advanced",
+      "Expected Gates": "H, CNOT, H",
+      "Status": "Haven't Touched"
+    },
+    {
+      "Circuit": "Bell State (|Φ+⟩)",
+      "Description of Utility": "Creates a maximally entangled two-qubit state producing only |00⟩ and |11⟩ outcomes. Core benchmark for this project.",
+      "Difficulty": "Beginner",
+      "prompt": "Prepare the Bell state |Phi+> on two qubits as a Cirq circuit",
+      "prompt_style": "technical",
+      "num_qubits": 2,
+      "expected_gates": ["H", "CNOT"],
+      "expected_behavior": "Measurement outcomes 00 and 11 should dominate with roughly equal probability."
+      "resulted code": "```python\nimport cirq\n\n# Define the qubits\nqubit0 = cirq.LineQubit(0)\nqubit1 = cirq.LineQubit(1)\n\n# Create the circuit\ncircuit = cirq.Circuit(\n    # Apply Hadamard to qubit0\n    cirq.H(qubit0),\n    # Apply CNOT with qubit0 as control and qubit1 as target\n    cirq.CNOT(qubit0, qubit1)\n)\n\n# Print the circuit\nprint("Circuit to prepare |Φ⁺⟩:")\nprint(circuit)\n```",
+      "validated verdict": "success"
+    },
+    {
+      "Circuit": "Bell State (|Φ+⟩)",
+      "Description of Utility": "Creates a maximally entangled two-qubit state producing only |00⟩ and |11⟩ outcomes. Core benchmark for this project.",
+      "Difficulty": "Beginner",
+      "prompt": "Generate a quantum circuit that produces 00 and 11 with equal probibility",
+      "prompt_style": "narrative",
+      "num_qubits": 2,
+      "expected_gates": ["H", "CNOT"],
+      "expected_behavior": "Measurement outcomes 00 and 11 should dominate with roughly equal probability.",
+      "resulted_code": """python\nimport cirq\n\n# Define the qubits\nqubit0 = cirq.LineQubit(0)\nqubit1 = cirq.LineQubit(1)\n\n# Create the circuit\ncircuit = cirq.Circuit()\ncircuit.append(cirq.H(qubit0))  # Apply Hadamard to qubit0\ncircuit.append(cirq.CNOT(qubit0, qubit1))  # Apply CNOT with qubit0 as control and qubit1 as target\n\n# Print the circuit\nprint("Circuit:")\n print(circuit)\n\n# Simulate the circuit\nsimulator = cirq.Simulator()\nresult = simulator.simulate(circuit)\nfinal_state = result.final_state_vector\n\nprint("\\nFinal state vector:")\nprint(final_state)\n\n# Measure the probabilities\nprint("\\nMeasurement probabilities:")\nprint(result.measurements)\n""",
+    "validated_verdict": "invalid code, spacing error"
+    },
+    {
+      "Circuit": "Bell State (|Φ+⟩)",
+      "Description of Utility": "Creates a maximally entangled two-qubit state producing only |00⟩ and |11⟩ outcomes. Core benchmark for this project.",
+      "Difficulty": "Beginner",
+      "prompt": "Entangle 2 qubits as a Cirq Circuit",
+      "prompt_style": "conversational",
+      "num_qubits": 2,
+      "expected_gates": ["H", "CNOT"],
+      "expected_behavior": "Measurement outcomes 00 and 11 should dominate with roughly equal probability."
+      "resulted_code": """python\nimport cirq\n\n# Define the qubits\nqubit0 = cirq.LineQubit(0)\nqubit1 = cirq.LineQubit(1)\n\n# Create a circuit\ncircuit = cirq.Circuit()\n\n#Add a Hadamard gate to qubit0 to create superposition\ncircuit.append(cirq.H(qubit0))\n\n# Add a CNOT gate to entangle qubit0 and qubit1\ncircuit.append(cirq.CNOT(qubit0, qubit1))\n\n# Print the circuit\nprint("Circuit:")\nprint(circuit)\n\n# Simulate the circuit\nsimulator = cirq.Simulator()\nresult = simulator.simulate(circuit)\nprint("\\nFinal state:)\nprint(result.final_state)\n"",
+      "validated_verdict:": "invalid_code, inccorectly structured print statement, hallucinated state vector code",
+    },
+    {
+      "Circuit": "Hadamard (Single Qubit)",
+      "Description of Utility": "Puts a single qubit into equal superposition of |0⟩ and |1⟩. Foundational gate used in nearly every quantum algorithm.",
+      "Difficulty": "Beginner",
+      "prompt": "Apply a Hadamard gate to a single qubit initialized in the |0⟩ computational basis state and return the resulting Cirq circuit.",
+      "prompt_style": "technical",
+      "num_qubits": 1,
+      "expected_gates": ["H"],
+      "expected_behavior": "After H is applied the qubit is put into superposition"
+      "resulted code:```python\nimport cirq\n\n# Create a single qubit circuit\nqubit = cirq.LineQubit(0)\ncircuit = cirq.Circuit()\n\n# Add the Hadamard gate to the qubit\ncircuit.append(cirq.H(qubit))\n\n# Print the circuit\nprint("Circuit:")\nprint(circuit)\n```",
+      "validated verdict: success"
+    },
+    {
+      "Circuit": "Hadamard (Single Qubit)",
+      "Description of Utility": "Puts a single qubit into equal superposition of |0⟩ and |1⟩. Foundational gate used in nearly every quantum algorithm.",
+      "Difficulty": "Beginner",
+      "prompt": "Apply a Hadamard gate to a single qubit initialized in the |0⟩ computational basis state and return the resulting Cirq circuit.",
+      "prompt_style": "conversational",
+      "num_qubits": 1,
+      "expected_gates": ["H"],
+      "expected_behavior": "After H is applied the qubit is put into superposition"
+      "resulted_code": "```python\nimport cirq\n\n# Create a circuit with a single qubit initialized in the |0⟩ state\nqubit = cirq.LineQubit(0)\ncircuit = cirq.Circuit(cirq.H(qubit))\n\nprint(circuit)\n```", 
+      "validated_verdict": "success", 
+    },
+    {
+      "Circuit": "Hadamard (Single Qubit)",
+      "Description of Utility": "Puts a single qubit into equal superposition of |0⟩ and |1⟩. Foundational gate used in nearly every quantum algorithm.",
+      "Difficulty": "Beginner",
+      "prompt": "Put a qubit in superposition and model as a Cirq Circuit.",
+      "prompt_style": "narrative",
+      "num_qubits": 1,
+      "expected_gates": ["H"],
+      "expected_behavior": "After H is applied the qubit is put into superposition"
+      "resulted_code": "```python\nimport cirq\n\n# Create two qubits\nq0 = cirq.LineQubit(0)\n\n# Create a circuit containing an H gate applied to q0\ncircuit = cirq.Circuit(\n    cirq.H(q0),  # Apply Hadamard gate to q0\n)\n\nprint(circuit)  # Print the circuit\n```",
+      "validated_verdict:": "success",
+    },
+    {
+      "Circuit": "CNOT Gate",
+      "Description of Utility": "Flips target qubit conditional on control qubit being |1⟩. Primary two-qubit entangling gate in most frameworks.",
+      "Difficulty": "Beginner",
+      "prompt": "Construct a two-qubit Cirq circuit implementing a CNOT gate with qubit 0 as the control and qubit 1 as the target. Return the resulting Cirq circuit.",
+      "prompt_style": "technical",
+      "num_qubits": 1,
+      "expected_gates": ["CNOT"],
+      "expected_behavior": "After CNOT is applied the qubits become entangled"
+      "resulted code":"```python\nimport cirq\n\n# Create two qubits\nqubit0 = cirq.LineQubit(0)\nqubit1 = cirq.LineQubit(1)\n\n# Define the CNOT operation\ncircuit = cirq.Circuit(\n    # CNOT operation\n    cirq.CNOT(qubit0, qubit1),\n)\n\nprint(circuit)\n```",
+      "validated verdict: success"
+    },
+    {
+      "Circuit": "CNOT Gate",
+      "Description of Utility": "Flips target qubit conditional on control qubit being |1⟩. Primary two-qubit entangling gate in most frameworks.",
+      "Difficulty": "Beginner",
+      "prompt": "Create a cirq circuit that entangles 2 qubits with q0 as a control and q1 as a target. Implement the CNOT gate.",
+      "prompt_style": "conversational",
+      "num_qubits": 1,
+      "expected_gates": ["CNOT"],
+      "expected_behavior": "After CNOT is applied the qubits become entangled"
+      "resulted_code": "```python\nimport cirq\n\n# Create two qubits\nq0 = cirq.LineQubit(0)\nq1 = cirq.LineQubit(1)\n\n# Create a CNOT gate\ncnot_gate = cirq.CNOT(q0, q1)\n\n# Print the CNOT gate\nprint(cnot_gate)\n\n# Create a circuit with the CNOT gate\ncircuit = cirq.Circuit(cnot_gate)\n\n# Add a measurement for the qubits\ncircuit.append([\n    cirq.measure(q0, key='q0'),\n    cirq.measure(q1, key='q1')\n])\n\n# Print the circuit\nprint(circuit)\n\n# Simulate the circuit\nsimulator = cirq.Simulator()\nresult = simulator.run(circuit, repetitions=1)\nprint(result)\n```", 
+      "validated_verdict": "invalid, proper circuit, added measurement gates, ran a simulation", 
+    },
+    {
+      "Circuit": "CNOT Gate",
+      "Description of Utility": "Flips target qubit conditional on control qubit being |1⟩. Primary two-qubit entangling gate in most frameworks.",
+      "Difficulty": "Beginner",
+      "prompt": "Create a cirq circuit that models the computational basis state |11⟩ with 100% probability.",
+      "prompt_style": "narrative",
+      "num_qubits": 1,
+      "expected_gates": ["CNOT"],
+      "expected_behavior": "After CNOT is applied the qubits become entangled"
+      "resulted_code": "```python\nimport cirq\n\n# Define two qubits to represent the computational basis state |11⟩\nq0 = cirq.GridQubit(0, 0)\nq1 = cirq.GridQubit(1, 0)\n\n# Prepare the qubits in the |1⟩ state\ncircuit = cirq.Circuit(\n    cirq.X(q0),\n    cirq.X(q1),\n    cirq.measure(q0, key='q0'),\n    cirq.measure(q1, key='q1'),\n)\n\n# Simulate the circuit to find the outcome\nsimulator = cirq.Simulator()\nresult = simulator.run(circuit, repetitions=1000)  # Run the circuit for 1000 repetitions\n\n# Print the outcome\nprint(result)\n```",
+      "validated_verdict:": "invalid circuit, applied x twice, didn't print a circuit, ran a sim and printed outcomes",
+    },
+    {
+      "Circuit": "Grover's Diffusion Operator",
+      "Description of Utility": "Amplitude amplification step of Grover's search algorithm. Reflects amplitudes about their mean to boost target state probability. Advanced stretch circuit.",
+      "Difficulty": "Expert",
+      "Expected Gates": "H, X, H, CNOT, H, X, H",
+      "Status": "Haven't Touched"
+    },
+    {
+      "Circuit": "Ambiguous Entanglement Prompt",
+      "Description of Utility": "Intentionally vague prompt like 'Make two qubits the same somehow.' Tests whether LLM asks for clarification or picks a valid interpretation.",
+      "Difficulty": "Intermediate",
+      "prompt": "Prepare a two-qubit state exhibiting quantum correlation. Model as a cirq circuit.",
+      "prompt_style": "technical",
+      "num_qubits": "2+",
+      "expected_gates": ["TBD — model chooses"],
+      "expected_behavior": "Model uses its own reasoning skills to create entangled qubits."
+      "resulted code:```python\nimport cirq\n\n# Create two qubits\nq0 = cirq.LineQubit(0)\nq1 = cirq.LineQubit(1)\n\n# Create a circuit for the Bell state\ncircuit = cirq.Circuit(\n    cirq.H(q0),\n    cirq.CNOT(q0, q1),\n    cirq.H(q0)\n)\n\nprint(circuit)\n```",
+      "validated verdict: "success, didn't prepare bell-state, made uniform superposition, still exceptable"
+    },
+    {
+      "Circuit": "Ambiguous Entanglement Prompt",
+      "Description of Utility": "Intentionally vague prompt like 'Make two qubits the same somehow.' Tests whether LLM asks for clarification or picks a valid interpretation.",
+      "Difficulty": "Intermediate",
+      "prompt": "As as Cirq circuit, Make two qubits the same somehow.",
+      "prompt_style": "conversational",
+      "num_qubits": "2+",
+      "expected_gates": ["TBD — model chooses"],
+      "expected_behavior": "Model uses its own reasoning skills to create entangled qubits."
+      "resulted_code": "```python\nimport cirq\n\n# Create two qubits\nq0 = cirq.LineQubit(0)\nq1 = cirq.LineQubit(1)\n\n# Create a circuit\ncircuit = cirq.Circuit()\n\n# Apply Hadamard gate to q0\ncircuit.append([cirq.H(q0)])\n\n# Apply controlled-NOT gate to q1 with q0 as the control qubit\ncircuit.append([cirq.CNOT(q0, q1)])\n\n# Print the circuit\nprint(circuit)\n\n# Simulate the circuit\nsimulator = cirq.Simulator()\nresult = simulator.simulate(circuit)\n\n# Print the final state of the qubits\nprint(result.state)\n```", 
+      "validated_verdict": "invalid code, added simulation, however correct circuit, generated bell state", 
+    },
+    {
+      "Circuit": "Ambiguous Entanglement Prompt",
+      "Description of Utility": "Intentionally vague prompt like 'Make two qubits the same somehow.' Tests whether LLM asks for clarification or picks a valid interpretation.",
+      "Difficulty": "Intermediate",
+      "prompt": "Create a cirq circuit where measuring one qubit tells you something about the other.",
+      "prompt_style": "narrative",
+      "num_qubits": "2+",
+      "expected_gates": ["TBD — model chooses"],
+      "expected_behavior": "Model uses its own reasoning skills to create entangled qubits."
+      "resulted_code": "```python\nimport cirq\nimport numpy as np\n\n# Define two qubits\nq0 = cirq.LineQubit(0)\nq1 = cirq.LineQubit(1)\n\n# Create a circuit with a Hadamard gate on each qubit to prepare an entangled state\ncircuit = cirq.Circuit(\n    cirq.H(q0),\n    cirq.H(q1),\n    cirq.measure(q0, key='q0'),\n    cirq.measure(q1, key='q1')\n)\n\n# Create a Simulator and run the circuit\nsimulator = cirq.Simulator()\nresult = simulator.run(circuit, repetitions=1000)\n\n# Print the results\nprint(result.histogram(key='q0'))\nprint(result.histogram(key='q1'))\n",
+      "validated_verdict:": "invalid code, added simulation, correct circuit, made uniform superposition state.",
+    },
+    {
+      "Circuit": "Quantum Teleportation",
+      "Description of Utility": "Transfers an unknown qubit state using entanglement and classical communication. Three-qubit protocol beyond project scope — stretch goal.",
+      "Difficulty": "Expert",
+      "Expected Gates": "H, CNOT, CNOT, H, M, X, Z",
+      "Status": "Haven't Touched"
+    },
+    {
+      "Circuit": "Toffoli Gate (CCNOT)",
+      "Description of Utility": "Three-qubit gate — flips target only if both control qubits are |1⟩. Universal for classical reversible computation.",
+      "Difficulty": "Advanced",
+      "Expected Gates": "CCNOT",
+      "Status": "Haven't Touched"
+    },
+    {
+      "Circuit": "Pauli-Z Gate",
+      "Description of Utility": "Applies a phase flip — leaves |0⟩ unchanged and flips the sign of |1⟩. Used in phase kickback and error correction.",
+      "Difficulty": "Beginner",
+      "prompt": "Apply a Pauli-Z gate to a single qubit initialized in the |+⟩ computational basis state and return the resulting Cirq circuit.",
+      "prompt_style": "technical",
+      "num_qubits": 1,
+      "expected_gates": ["Z"],
+      "expected_behavior": "After Z is applied the qubits phase flips."
+      "resulted code":""```python\nimport cirq\n\n# Initialize a qubit\nqubit = cirq.LineQubit(0)\n\n# Define the initial state |+⟩\ninitial_state = (cirq.X(qubit) @ cirq.X(qubit)) ** 0.5\n\n# Create a circuit with the initial state\ncircuit = cirq.Circuit(initial_state)\n\n# Apply a Pauli-Z gate to the qubit\npauli_z_gate = cirq.Z(qubit)\ncircuit.append(cirq.measure(qubit, key="z"),\n               cirq.measure(qubit, key=\'full\'))\n\ncircuit.append(pauli_z_gate)\n\nprint(circuit)\n```",
+      "validated_verdict:": "invalid circuit, tried to innitialize the innitial state wrong, write idea ig.",
+    },
+    {
+      "Circuit": "Pauli-Z Gate",
+      "Description of Utility": "Applies a phase flip — leaves |0⟩ unchanged and flips the sign of |1⟩. Used in phase kickback and error correction.",
+      "Difficulty": "Beginner",
+      "prompt": "Create a cirq circuit that applied a phase flip to a qubit. Implement the Z gate.",
+      "prompt_style": "conversational",
+      "num_qubits": 1,
+      "expected_gates": ["Z"],
+      "expected_behavior": "After Z is applied the qubits phase flips."
+      "resulted_code": "```python\nimport cirq\n\n# Create a qubit\nqubit = cirq.LineQubit(0)\n\n# Create the Z gate\nz_gate = cirq.Z(qubit)\n\n# Print the Z gate\nprint("Z gate: ", z_gate)\n\n# Apply the Z gate to the qubit\ncircuit = cirq.Circuit(z_gate)\n\n# Print the circuit\nprint("Circuit: ", circuit)\n\n# Simulate the circuit\nsimulator = cirq.Simulator()\nresult = simulator.simulate(circuit)\n\n# Print the expected output\nprint("Expected output (for the state |0>): ", 0 * cirq.bit_string_to_list(\'1\'))\nprint("Simulator output: ", result.output())\n```", 
+      "validated_verdict":  "Correct Circuit, hallucinated simulation resulted to invalid code", 
+    },
+    {
+      "Circuit": "Pauli-Z Gate",
+      "Description of Utility": "Applies a phase flip — leaves |0⟩ unchanged and flips the sign of |1⟩. Used in phase kickback and error correction.",
+      "Difficulty": "Beginner",
+      "prompt": "Create a cirq circuit that models a phase flip, mapping |+⟩ → |−⟩ = (|0⟩ - |1⟩)/√2.",
+      "prompt_style": "narrative",
+      "num_qubits": 1,
+      "expected_gates": ["Z"],
+      "expected_behavior": "After Z is applied the qubits phase flips."
+      "resulted_code": "```python\nimport cirq\n\n# Define the qubits\nq = cirq.LineQubit(0)\n\n# Define the phase flip operation\nphase_flip = cirq.X(q)\n\n# Simulate the circuit\nsimulator = cirq.Simulator()\nresult = simulator.run(phase_flip, repetitions=1)\n\n# Print the result\nprint(result)\n```",
+      "validated_verdict:": "Invalid Code, Incorrect Gates", 
+    },
+    {
+      "Circuit": "Bell State with Measurement",
+      "Description of Utility": "Bell state with measurement operations added to both qubits. Tests whether LLM correctly appends measurements when prompted.",
+      "Difficulty": "Beginner",
+      "prompt": "Prepare the Bell state |Phi+> on two qubits as a Cirq circuit and add mesurement gates to both qubits.",
+      "prompt_style": "technical",
+      "num_qubits": 2,
+      "expected_gates": ["H", "CNOT", "M"],
+      "expected_behavior": "Measurement outcomes 00 and 11 should dominate with roughly equal probability."
+      "resulted code": "import cirq\n\n# Create a simulator\nsimulator = cirq.Simulator()\n\n# Define a circuit for a Bell state |Phi+>\nq0, q1 = cirq.LineQubit.range(2)\n\n# Apply Hadamard gate to qubit 0\ncircuit = cirq.Circuit(\n    cirq.H(q0),\n    cirq.CNOT(q0, q1)\n)\n\n# Add measurement gates\ncircuit.append(cirq.measure(q0, key="q0"))\ncircuit.append(cirq.measure(q1, key="q1"))\n\n# Run the circuit\nresult = simulator.run(circuit, repetitions=100)\n\n# Print the measurement outcomes\nprint(result.histogram(key="q0"))\nprint(result.histogram(key="q1"))\n",
+      "validated verdict": "Correct circuit, simulator, didn't print circuit"
+    },
+    {
+      "Circuit": "Bell State with Measurement",
+      "Description of Utility": "Bell state with measurement operations added to both qubits. Tests whether LLM correctly appends measurements when prompted.",
+      "Difficulty": "Beginner",
+      "prompt": "Generate a quantum circuit that produces 00 and 11 with equal probibility and measure both qubits",
+      "prompt_style": "narrative",
+      "num_qubits": 2,
+      "expected_gates": ["H", "CNOT", "M"],
+      "expected_behavior": "Measurement outcomes 00 and 11 should dominate with roughly equal probability.",
+      "resulted_code": "import cirq\nimport numpy as np\n\n# Define two qubits\nq0 = cirq.GridQubit(0, 0)\nq1 = cirq.GridQubit(0, 1)\n\n# Create a circuit with Hadamard gate on the first qubit and CNOT gate to produce 00 and 11 with equal probablility,\n# then append identity with pair of qubits to preserve superposition length in both the states 00 and 11\ncircuit = cirq.Circuit(\n    cirq.H(q0),\n    cirq.CNOT(q0, q1),\n    cirq.CX(q0,q1)\n)\n\n# Perform the circuit and measure both qubits\nsimulator = cirq.Simulator()\nresult = simulator.run(circuit, repetitions=10000)\n\n# Print the results\nfor outcome in cirq.measure([q0, q1], key=\'outcome\'):\n    print(f"qubits are: {outcome}")\nprint("The probability of getting 00 is: ", result.histogram(key=\'outcome\')[0]/10000)\nprint("The probability of getting 11 is: ", result.histogram(key=\'outcome\')[1]/10000)\n", 
+    "validated_verdict": "invalid code, spacing error"
+    },
+    {
+      "Circuit": "Bell State with Measurement",
+      "Description of Utility": "Bell state with measurement operations added to both qubits. Tests whether LLM correctly appends measurements when prompted.",
+      "Difficulty": "Beginner",
+      "prompt": "Entangle 2 qubits as a Cirq Circuit and Measure each qubit.",
+      "prompt_style": "conversational",
+      "num_qubits": 2,
+      "expected_gates": ["H", "CNOT", "M"],
+      "expected_behavior": "Measurement outcomes 00 and 11 should dominate with roughly equal probability."
+      "resulted_code":  "python\nimport cirq\n\n# Define the qubits\nqubit0 = cirq.LineQubit(0)\nqubit1 = cirq.LineQubit(1)\n\n# Create a circuit\ncircuit = cirq.Circuit()\n\n# Add a Hadamard gate to qubit0 to create superposition\ncircuit.append(cirq.H(qubit0))\n\n# Add a CNOT gate to entangle qubit0 and qubit1\ncircuit.append(cirq.CNOT(qubit0, qubit1))\n\n# Print the circuit\nprint("Circuit:")\nprint(circuit)\n\n# Simulate the circuit\nsimulator = cirq.Simulator()\nresult = simulator.simulate(circuit)\nprint("\\nFinal state:)\nprint(result.final_state)\n",
+      "validated_verdict:":"invalid code, correct cirq but measurement was wrong, tried to simulte w/o proper measurements",
+    },
+    {
+      "Circuit": "RY Rotation",
+      "Description of Utility": "Rotates a qubit around the Y-axis by a specified angle. Common in ansatz layers for quantum ML.",
+      "Difficulty": "Intermediate",
+      "Expected Gates": "RY(theta)",
+      "Status": "Learned Function"
+    },
+    {
+      "Circuit": "RY Rotation",
+      "Description of Utility": "Rotates a qubit around the Y-axis by a specified angle. Common in ansatz layers for quantum ML.",
+      "Difficulty": "intermediate",
+      "prompt": "Apply an RY rotation gate with angle θ = π/2 to a single qubit initialized in the |+⟩ state (after a Hadamard) and return the resulting Cirq circuit.",
+      "prompt_style": "technical",
+      "num_qubits": 1,
+      "expected_gates": ["RY(theta)"],
+      "expected_behavior": "After RY is applied the qubits phase flips."
+      "resulted code":"```python\nimport cirq\n\n# Initialize the qubit\nqubit = cirq.LineQubit(0)\n\n# Define the rotation angle\ntheta = cirq.PI / 2\n\n# Apply the Hadamard gate followed by the RY rotation gate\ncircuit = cirq.Circuit(cirq.H(qubit), cirq.Ry(theta)(qubit))\n\n# Print the circuit\nprint(circuit)\n",
+      "validated_verdict": "correct circuit, hallucinated pi in cirq instead of numpy", 
+    },
+    {
+      "Circuit": "RY Rotation",
+      "Description of Utility": "Rotates a qubit around the Y-axis by a specified angle. Common in ansatz layers for quantum ML.",
+      "Difficulty": "intermediate",
+      "prompt": "Create a cirq circuit that rotates a qubit around the Y axis with angle θ = π/2. Implement a H gate, and then the RY gate.",
+      "prompt_style": "conversational",
+      "num_qubits": 1,
+      "expected_gates": ["RY(theta)"],
+      "expected_behavior": "After RY is applied the qubits phase flips."
+      "resulted_code": "python\nimport cirq\n\n# Define the RY gate from the qelib1 library\nqubits = cirq.LineQubit.range(1)\nRY_gate = cirq.Ry(cirq.named_euler_angles("-pi/2", "0", "0"))\n\n# Create the circuit\ncircuit = cirq.Circuit(\n    cirq.H(qubits[0]),  # Hadamard gate\n    RY_gate(qubits[0])   # Rotate around Y axis by π/2\n)\n\nprint(circuit)\n", 
+      "validated_verdict":  "correct circuit, hallucinated 'named_euler_angles' to define rotation, right idea", 
+    },
+    {
+      "Circuit": "RY Rotation",
+      "Description of Utility": "Rotates a qubit around the Y-axis by a specified angle. Common in ansatz layers for quantum ML.",
+      "Difficulty": "intermediate",
+      "prompt": "Create a cirq circuit that models a phase flip, mapping |0⟩ + |1⟩ → cos(pi/2)|0⟩ + sin(pi/2)|1⟩ ",
+      "prompt_style": "narrative",
+      "num_qubits": 1,
+      "expected_gates": ["RY(theta)"],
+      "expected_behavior": "After RY is applied the qubits phase flips."
+      "resulted_code": "```python\nimport cirq\nimport cirq谷山\n\n# Define the circuit\nqubit = cirq.GridQubit(0, 0)\ncircuit = cirq.Circuit(\n    cirq.H(qubit),\n    cirq.measure(qubit, key=\'z\')\n)\n\n# Define the initial state\nstate = [0, 1]  # 0: |0⟩, 1: |1⟩\n\n\n# Apply the circuit to the state\nresult = cirq.SimulateAllOutputs(affine_triangular()).simulate(circuit, qubit).histogram(key=\'z\')\nprint(result.histogram(key="z"))\n\n# Output: \n# Histogram({\'0\': 8388607, \'1\': 8388607, \'\': 0})\n\n# This is close to the expected output, which would be:\n# Histogram({\'0\': 0, \'1\': 8388607, \'\': 0})\n# but due to numerical inaccuracies in the simulator, the probability of 0 is very small\n```",
+      "validated_verdict:": "invalid code, halluciated code, slop, not close to right idea", 
+    },
+    {
+      "Circuit": "GHZ State (3-qubit)",
+      "Description of Utility": "Entangles three qubits into a superposition of |000⟩ and |111⟩. Extends Bell state logic to three qubits.",
+      "Difficulty": "Intermediate",
+      "Expected Gates": "H, CNOT, CNOT",
+      "Status": "Created Base Circuit"
+    },
+    {
+      "Circuit": "GHZ State with Measurement",
+      "Description of Utility": "GHZ circuit with measurements on all three qubits. Semantic check: outcomes should be only 000 and 111.",
+      "Difficulty": "Intermediate",
+      "Expected Gates": "H, CNOT, CNOT, M",
+      "Status": "Learned Function"
+    },
+    {
+      "Circuit": "SWAP Gate",
+      "Description of Utility": "Exchanges the states of two qubits. Used in routing algorithms and circuit compilation.",
+      "Difficulty": "Intermediate",
+      "Expected Gates": "SWAP",
+      "Status": "Haven't Touched"
+    },
+    {
+      "Circuit": "Single-Qubit Measurement",
+      "Description of Utility": "Puts qubit in superposition then measures. Should yield ~50/50 outcomes. Tests measurement-only prompts.",
+      "Difficulty": "Beginner",
+      "prompt": "Apply a Hadamard gate to a single qubit initialized in the |0⟩ computational basis state and return the resulting Cirq circuit. After, apply a measurement gate.",
+      "prompt_style": "technical",
+      "num_qubits": 1,
+      "expected_gates": ["H, M"],
+      "expected_behavior": "After H is applied the qubit is put into superposition"
+      "resulted code:```import cirq\n\n# Define the qubit\nqubit = cirq.LineQubit(0)\n\n# Initialize the qubit in the |0⟩ state\ncircuit = cirq.Circuit(cirq.X(qubit))\n\n# Apply a Hadamard gate to the qubit\ncircuit += cirq.H(qubit)\n\n# Apply a measurement gate\ncircuit += cirq.measure(qubit, key='result')\n\n# Run the circuit on the simulator\nsimulator = cirq.Simulator()\nresult = simulator.run(circuit, repetitions=1000)\n\nprint(result.histogram(key='result'))\n```",
+      "validated verdict": "mostly correct circuit, added an x gate to prepare circuit when it wasn't necessary."
+    },
+    {
+      "Circuit": "Single-Qubit Measurement",
+      "Description of Utility": "Puts qubit in superposition then measures. Should yield ~50/50 outcomes. Tests measurement-only prompts.",
+      "Difficulty": "Beginner",
+      "prompt": "In a cirq circuit put a qubit in superposition and then meausure it.",
+      "prompt_style": "conversational",
+      "num_qubits": 1,
+      "expected_gates": ["H, M"],
+      "expected_behavior": "After H is applied the qubit is put into superposition"
+      "resulted_code": "```python\nimport cirq\n\n# Create a qubit\nqubit = cirq.LineQubit(0)\n\n# Put the qubit in superposition\nsuperposition = cirq.X(qubit)\n\n# Create a circuit to put the qubit in superposition and then measure it\ncircuit = cirq.Circuit(superposition, cirq.measure(qubit))\n\n# Print the circuit\nprint(circuit)\n\n# Simulate the circuit\nsimulator = cirq.Simulator()\nresult = simulator.run(circuit, repetitions=1000)\n\n# Print the measurement result\nprint(result)\n```", 
+      "validated_verdict": "wrong code, used x gate instead of H to put the qubit in super position", 
+    },
+    {
+      "Circuit": "Single-Qubit Measurement",
+      "Description of Utility": "Puts qubit in superposition then measures. Should yield ~50/50 outcomes. Tests measurement-only prompts.",
+      "Difficulty": "Beginner",
+      "prompt": "Generate a cirq quantum circuit that makes a qubit's state 50/50 |1> and |0> and add a measurement gate afterward",
+      "prompt_style": "narrative",
+      "num_qubits": 1,
+      "expected_gates": ["H, M"],
+      "expected_behavior": "After H is applied the qubit is put into superposition"
+      "resulted_code": "```python\nimport cirq\n\n# Specify the simulator to use\nsimulator = cirq.Simulator()\n\n# Define the qubit to use\nqubit = cirq.LineQubit(0)\n\n# Create a circuit and add a Hadamard gate to make the qubit's state 50/50 |1> and |0>\ncircuit = cirq.Circuit(\n    cirq.H(qubit)  # Hadamard gate to make the qubit's state 50/50 |1> and |0>\n)\n\n# Add a measurement gate to the circuit\ncircuit.append(cirq.measure(qubit, key='result'))\n\n# Run the circuit\nresult = simulator.run(circuit, repetitions=1000)\n\n# Print the measurement results\nprint(result.histogram(key='result', bins=2))\n```",
+      "validated_verdict:": "correct circuit, simulates instead of prints, halucinated argument within simulation",
+    },
+    {
+      "Circuit": "RZ Rotation",
+      "Description of Utility": "Rotates a qubit around the Z-axis by a specified angle. Used in variational and parameterized circuits.",
+      "Difficulty": "intermediate",
+      "prompt": "Apply an RZ rotation gate with angle θ = π/2 to a single qubit initialized in the |+⟩ state (after a Hadamard) and return the resulting Cirq circuit.",
+      "prompt_style": "technical",
+      "num_qubits": 1,
+      "expected_gates": ["RZ(theta)"],
+      "expected_behavior": "After RZ is applied the qubits phase flips."
+      "resulted code":"```python\nimport cirq\n\n# Define the qubit\nq = cirq.LineQubit(0)\n\n# Initialize the circuit with the Hadamard gate\ncircuit = cirq.Circuit(cirq.H(q))\n\n# Apply an RZ rotation gate with angle θ = π/2\ncircuit.append(cirq.Rz(cirq.pi/2).on(q))\n\n# Print the circuit\nprint(circuit)\n",
+      "validated_verdict": "correct circuit, hallucinated pi in cirq instead of numpy", 
+    },
+    {
+      "Circuit": "RZ Rotation",
+      "Description of Utility": "Rotates a qubit around the Z-axis by a specified angle. Used in variational and parameterized circuits.",
+      "Difficulty": "intermediate",
+      "prompt": "Create a cirq circuit that rotates a qubit around the Z axis with angle θ = π/2. Implement the RZ gate.",
+      "prompt_style": "conversational",
+      "num_qubits": 1,
+      "expected_gates": ["RX(theta)"],
+      "expected_behavior": "After X is applied the qubits phase flips."
+      "resulted_code": "python\nimport cirq\n\n# Define a qubit\nqubit = cirq.LineQubit(0)\n\n# Define the rotation angle\ntheta = cirq.pi / 2\n\n# Create a circuit that rotates the qubit around the Z axis by theta\ncircuit = cirq.Circuit(cirq.Rz(theta).on(qubit))\n\n# Print the circuit\nprint(circuit)\n\n# Simulate the circuit\nsimulator = cirq.Simulator()\nresult = simulator.simulate(circuit)\nprint("Final State:")\nprint(result.state)\n", 
+      "validated_verdict":  "correct circuit, hallucinated pi in cirq instead of numpy", 
+    },
+    {
+      "Circuit": "RZ Rotation",
+      "Description of Utility": "Rotates a qubit around the Z-axis by a specified angle. Used in variational and parameterized circuits.",
+      "Difficulty": "intermediate",
+      "prompt": "Create a cirq circuit that models a phase flip, mapping |1⟩ → i|1⟩",
+      "prompt_style": "narrative",
+      "num_qubits": 1,
+      "expected_gates": ["RZ(theta)"],
+      "expected_behavior": "After Z is applied the qubits phase flips."
+      "resulted_code": "```python\nimport cirq\n\n# Define a qubit\nqubit = cirq.LineQubit(0)\n\n# Define the rotation angle\ntheta = cirq.pi / 2\n\n# Create a circuit that rotates the qubit around the Z axis by theta\ncircuit = cirq.Circuit(cirq.Rz(theta).on(qubit))\n\n# Print the circuit\nprint(circuit)\n\n# Simulate the circuit\nsimulator = cirq.Simulator()\nresult = simulator.simulate(circuit)\nprint("Final State:")\nprint(result.state)\n```",
+      "validated_verdict:": "correct circuit, hallucinated pi in cirq instead of numpy", 
+    },
+    {
+      "Circuit": "Quantum Fourier Transform (3-qubit)",
+      "Description of Utility": "Computes the discrete Fourier transform on quantum amplitudes. Subroutine in Shor's algorithm and phase estimation. More complex than project scope.",
+      "Difficulty": "Expert",
+      "Expected Gates": "H, CPHASE, SWAP",
+      "Status": "Haven't Touched"
+    }
+  ]
+}
