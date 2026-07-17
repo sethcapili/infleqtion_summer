@@ -1,0 +1,96 @@
+data = [
+  {
+    "circuit_category": "Bell-State",
+    "strategy": "Strategy 1",
+    "prompt_type": "technical",
+    "original_intent": "Create a cirq circuit that entangles 2 qubits with q0 as a control and q1 as a target.",
+    "prompt": "Prepare the Bell state |Phi+> on two qubits as a Cirq circuit",
+    "attempts_required": 1,
+    "fully_correct": true,
+
+    "final_extracted_code": "```python\nimport cirq\n\n# Define two qubits\nq0 = cirq.GridQubit(0, 0)\nq1 = cirq.GridQubit(0, 1)\n\n# Prepare the initial state |00>\ninitial_state = cirq.LineQubit(0).with_phase(-cirq.pi/2)\ninitial_state = cirq.LineQubit(1).with_phase(-cirq.pi/2)\n\n# Define the CNOT gate\ncnot = cirq.X(q1)**cirq/GateOperationwritesDelayed Not(q0, q1))\n\n# Define the hadamard gate\nhadamard = cirq.H(q1)\n\n# Create the circuit\ncircuit = cirq.Circuit(\n    cirq.H(q0),\n    hadamard(q1),\n    cnot\n)\n\nprint(circuit)\n```", 
+
+   "validator_scorecard": """{
+    'parse_success': False,
+    'execution_success': False,
+    'correct_qubits': False,
+    'correct_gates': False,
+    'measurement_correct': False,
+    'semantic_success': False,
+    'fully_correct': False,
+    'verdict': 'invalid_code',
+    'error_categories': ['invalid_code'],
+    'reason': "Syntax error: unmatched ')' (<string>, line 12)"
+    }""",
+  },
+  {
+    "circuit_category": "Bell-State",
+    "strategy": "Strategy 2",
+    "prompt_type": "technical",
+    "original_intent": "Create a cirq circuit that entangles 2 qubits with q0 as a control and q1 as a target",
+    "prompt": "You generate minimal valid Python code using Cirq. Rules: Return only Python code, Do not use Markdown code fences, Import cirq, Define a variable named circuit, Use cirq.LineQubit.range(n) when possible, Do not simulate the circuit unless the user explicitly asks for simulation, Do not add measurements unless the user explicitly asks for measurements, Print only the circuit. User request: Prepare the Bell state |Phi+> on two qubits.",
+    "attempts_required": 1,
+    "fully_correct": true,
+
+    "final_extracted_code": "```python\nimport cirq\nimport numpy as np\n\nn = 2\ncircuit = cirq.Circuit(\n    cirq.H(cirq.LineQubit(0)),\n    cirq.CNOT(cirq.LineQubit(0), cirq.LineQubit(1)),\n    cirq.X(cirq.LineQubit(0)),\n    cirq Х(cirq.LineQubit(1))\n)\nprint(circuit)\n```", 
+
+   "validator_scorecard": """{
+    'parse_success': False,
+    'execution_success': False,
+    'correct_qubits': False,
+    'correct_gates': False,
+    'measurement_correct': False,
+    'semantic_success': False,
+    'fully_correct': False,
+    'verdict': 'invalid_code',
+    'error_categories': ['invalid_code'],
+    'reason': "Syntax error: unmatched ')' (<string>, line 12)"
+    }""",
+  }
+  {
+    "circuit_category": "Bell-State",
+    "strategy": "Strategy 3",
+    "prompt_type": "technical",
+    "original_intent": "Create a cirq circuit that entangles 2 qubits with q0 as a control and q1 as a target",
+    "prompt": """You generate minimal valid Python code using Cirq. Example 1 Request: Apply a Hadamard gate to one qubit. Answer:"import cirq\nq0 = cirq.LineQubit(0)\ncircuit = cirq.Circuit(cirq.H(q0))\nprint(circuit)". Example 2 Request: Apply a CNOT gate to two qubits. Answer:"import cirq\nq0,q1 = cirq.LineQubit(2)\ncircuit = cirq.Circuit()\ncircuit += cirq.H(q0)\ncircuit += cirq.CNOT(q0,q1)\nprint(circuit)".Example 3 Request: Apply a X gate to two qubits. Answer:"import cirq\nq0 = cirq.LineQubit(0)\ncircuit = cirq.Circuit()\ncircuit += cirq.X(q0)\nprint(circuit)". Rules: Return only Python code, Do not use Markdown code fences, Import cirq, Define a variable named circuit, Use cirq.LineQubit.range(n) when possible, Do not simulate the circuit unless the user explicitly asks for simulation, Do not add measurements unless the user explicitly asks for measurements, Print only the circuit. User request: Prepare the Bell state |Phi+> on two qubits.""",
+    "attempts_required": 1,
+    "fully_correct": true,
+
+    "final_extracted_code": "```import cirq\n\nq0, q1 = cirq.LineQubit.range(2)\ncircuit = cirq.Circuit()\ncircuit += cirq.H(q0)\ncircuit += cirq.CNOT(q0,q1)\ncircuit += cirq.H(q0)\nprint(circuit)```", 
+
+    "validator_scorecard": """{
+    'parse_success': True,
+    'execution_success': True,
+    'correct_qubits': False,
+    'correct_gates': False,
+    'measurement_correct': True,
+    'semantic_success': 'False',
+    'fully_correct': False,
+    'verdict': 'simulation_fail',
+    'error_categories': ['simulation_fail'],
+    'reason': 'The circuit failed one or more validator checks.'}""",
+  },
+  {
+    "circuit_category": "Bell-State",
+    "strategy": "Strategy 4",
+    "prompt_type": "technical",
+    "original_intent": "Create a cirq circuit that entangles 2 qubits with q0 as a control and q1 as a target",
+    "prompt": """Return valid JSON only. Do not include Markdown. The JSON schema must be: {\n"description": string,\n"framework": "cirq",\n"num_qubits": integer,\n"code": string,\n"expected_gates": list[string],\n"measurement_included": boolean,\n"expected_behavior": "string",}. User request: Prepare the Bell state |Phi+> on two qubits.""", 
+    "attempts_required": 1,
+    "fully_correct": true,
+
+    "final_extracted_code": """{\n  "description": "Prepare the Bell state |Phi+> on two qubits.",\n  "framework": "cirq",\n  "num_qubits": 2,\n  "code": "cirq.X(cirq.LineQubit(0)) @ cirq.LineQubit(0)^cirq.LineQubit(1)",\n  "expected_gates": [\n    "X(cirq.LineQubit(0))"\n  ],\n  "measurement_included": false,\n  "expected_behavior": "preparing a quantum state"\n}""", 
+
+    "validator_scorecard": """{
+    'parse_success': False,
+    'execution_success': False,
+    'correct_qubits': False,
+    'correct_gates': False,
+    'measurement_correct': False,
+    'semantic_success': False,
+    'fully_correct': False,
+    'verdict': 'invalid_code',
+    'error_categories': ['invalid_code'],
+    'reason': 'Syntax error: unterminated string literal (detected at line 1) (<string>, line 1)'}""",
+  },
+]
